@@ -1,0 +1,23 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "nuxt build",
+    "dev": "PYTHONPATH=/Users/erikparr/miniconda3/lib/python3.11/site-packages nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^11.0.0",
+    "luxon": "^3.5.0",
+    "node-schedule": "^2.1.1",
+    "nuxt": "^3.13.0",
+    "python-shell": "^5.0.0",
+    "sharp": "^0.33.5",
+    "vue": "latest"
+  }
+}
