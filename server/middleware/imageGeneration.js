@@ -18,7 +18,6 @@ import fs from 'fs-extra';
 import { DateTime } from 'luxon';
 import { PythonShell } from 'python-shell';
 import path from 'path';
-import { glob } from 'glob';
 import { eventHandler, setHeader, sendStream, createError } from 'h3';
 import sharp from 'sharp';
 
