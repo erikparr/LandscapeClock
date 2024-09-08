@@ -3,9 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node server/index.js",
     "build": "nuxt build",
-    "dev": "PYTHONPATH=/Users/erikparr/miniconda3/lib/python3.11/site-packages nuxt dev",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -16,8 +15,6 @@
     "luxon": "^3.5.0",
     "node-schedule": "^2.1.1",
     "nuxt": "^3.13.0",
-    "python-shell": "^5.0.0",
-    "sharp": "^0.33.5",
     "vue": "latest"
   }
 }

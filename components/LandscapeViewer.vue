@@ -5,11 +5,7 @@
         class="image-wrapper"
         :style="{ transform: `translateX(${-panPercentage}%)` }"
       >
-        <img 
-          :src="currentImageUrl" 
-          alt="Current Landscape" 
-          @error="handleImageError"
-        />
+      <img src="/landscape.png" alt="Landscape" />
       </div>
     </div>
     <div class="time-display">
@@ -76,26 +72,27 @@ function updatePanOffset() {
   
   panPercentage.value = dayProgress * 100
 
-  // Check if we need to switch to the next day's image
-  if (dayProgress === 0 && nextImage.value) {
-    console.log('Day changed. Switching to next image.')
-    currentImage.value = nextImage.value
-    nextImage.value = ''
-    fetchNextDayImage() // Fetch the next day's image
-  }
+  // Check if we need to switch to the next day's imagef
+  // if (dayProgress === 0 && nextImage.value) {
+  //   console.log('Day changed. Switching to next image.')
+  //   currentImage.value = nextImage.value
+  //   nextImage.value = ''
+  //   fetchNextDayImage() // Fetch the next day's image
+  // }
 
-  // Start loading next day's image at 17:00
-  if (currentTime.getHours() === 17 && currentTime.getMinutes() === 0 && currentTime.getSeconds() === 0) {
-    fetchNextDayImage()
-  }
+  // // Start loading next day's image at 17:00
+  // if (currentTime.getHours() === 17 && currentTime.getMinutes() === 0 && currentTime.getSeconds() === 0) {
+  //   fetchNextDayImage()
+  // }
 }
 
 let animationFrameId: number | null = null
 
-watch(() => currentDate.value, (newDate, oldDate) => {
-  console.log(`Date changed from ${oldDate} to ${newDate}`)
-  fetchCurrentLandscape()
-}, { immediate: true })
+// watch(() => currentDate.value, (newDate, oldDate) => {
+//   console.log(`Date changed from ${oldDate} to ${newDate}`)
+//   fetchCurrentLandscape()
+// }, { immediate: true })
+await fetchDescription()
 
 async function fetchCurrentLandscape() {
   if (currentDate.value === lastFetchedDate.value) {
@@ -134,15 +131,35 @@ async function fetchCurrentLandscape() {
   }
 }
 
+async function fetchDescription() {
+  try {
+
+    // Construct the full URL using config.public.baseURL
+    const descriptionUrl = `generated_descriptions.txt`;
+    console.log('Fetching descriptions from:', descriptionUrl);
+
+    const response = await fetch(descriptionUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const text = await response.text();
+    descriptions.value = text.split('\n\n').map(desc => desc.trim());
+    console.log('Fetched descriptions:', descriptions.value);
+  } catch (err) {
+    console.error('Error fetching descriptions:', err);
+    descriptions.value = [];
+  }
+}
+
+
 async function fetchDescriptions(imageUrl: string) {
   try {
     // Extract the date and file name from the image URL
     const urlParts = imageUrl.split('/');
     const date = urlParts[urlParts.length - 2]; // Assumes format like '/images/2024-08-27/2024-08-27_full_day_landscape.png'
-    const descriptionFileName = `${date}_generated_descriptions.txt`;
 
     // Construct the full URL using config.public.baseURL
-    const descriptionUrl = new URL(`/images/${date}/${descriptionFileName}`, config.public.baseURL).toString();
+    const descriptionUrl = `generated_descriptions.txt`;
     console.log('Fetching descriptions from:', descriptionUrl);
 
     const response = await fetch(descriptionUrl);

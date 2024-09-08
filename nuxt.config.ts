@@ -6,23 +6,6 @@ export default defineNuxtConfig({
       baseURL: process.env.BASE_URL || 'http://localhost:3000'
     }
   },
-  nitro: {
-    static: true,
-    plugins: ['~/server/plugins/initializeImages.js'],
-    publicAssets: [
-      {
-        dir: 'static',
-        maxAge: 60 * 60 * 24 * 365 // 1 year
-      }
-    ]
-  },
-  vite: {
-    server: {
-      fs: {
-        allow: ['.']
-      }
-    }
-  },
   app: {
     baseURL: '/'
   },
@@ -33,9 +16,6 @@ export default defineNuxtConfig({
   //   }
   // },
   // Add this new configuration
-  routeRules: {
-    '/images/**': { static: true }
-  },
   // Add this to ensure static files are served correctly
   experimental: {
     payloadExtraction: false

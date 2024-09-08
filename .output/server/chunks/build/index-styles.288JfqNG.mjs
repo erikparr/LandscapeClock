@@ -1,0 +1,6 @@
+const main = "#__nuxt,body,html{height:100%;margin:0;padding:0}body{display:flex;flex-direction:column;min-height:100vh;min-height:100svh}#__nuxt{display:flex;flex:1;flex-direction:column}*,:after,:before{box-sizing:border-box}body,html{height:100%}body{background-color:#f4f4f4;color:#333;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;line-height:1.6;margin:0;padding:0}h1,h2,h3,h4,h5,h6{line-height:1.2;margin-top:0}h1{font-size:2.5rem}h2{font-size:2rem}h3{font-size:1.75rem}h4{font-size:1.5rem}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-bottom:1rem;margin-top:0}a{color:#07c;text-decoration:none}a:hover{text-decoration:underline}.button,button{background-color:#07c;border:none;border-radius:4px;color:#fff;cursor:pointer;display:inline-block;font-size:1rem;font-weight:600;padding:.5rem 1rem;text-align:center;text-decoration:none;transition:background-color .2s ease}.button:hover,button:hover{background-color:#005fa3}.container{margin:0 auto;max-width:1200px;padding:0 1rem;width:100%}.text-center{text-align:center}.mt-1{margin-top:1rem}.mb-1{margin-bottom:1rem}.py-1{padding-bottom:1rem;padding-top:1rem}";
+
+const indexStyles_288JfqNG = [main];
+
+export { indexStyles_288JfqNG as default };
+//# sourceMappingURL=index-styles.288JfqNG.mjs.map
