@@ -52,7 +52,7 @@ const simulationSpeed = ref(100)
 const descriptions = ref<string[]>([])
 const currentDescription = computed(() => {
   const hour = new Date(props.currentTime).getHours()
-  return descriptions.value[hour] || 'No description available'
+  return descriptions.value[hour+1] || 'No description available'
 })
 
 const currentImageUrl = computed(() => currentImage.value)
