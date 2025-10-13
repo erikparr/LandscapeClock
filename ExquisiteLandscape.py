@@ -12,7 +12,7 @@ llm = OpenAI(temperature=0.7)
 # Create a prompt template for generating landscape descriptions
 landscape_prompt = PromptTemplate(
     input_variables=["previous_description", "current_time"],
-    template="Generate a single sentence describing a natural landscape at {current_time} that could seamlessly extend the following landscape: {previous_description}. The new description should be different but complementary, and reflect the time of day."
+    template="Generate a single sentence describing a natural landscape at {current_time} that could seamlessly extend the following landscape: {previous_description}. The new description should be different but complementary, and reflect the time of day. At the end of the sentence include that it is a landscape painting."
 )
 
 # Create an LLMChain for generating landscape descriptions

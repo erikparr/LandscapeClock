@@ -10,9 +10,13 @@ import { LLMChain } from 'langchain/chains';
 /**
  * Generate 24 chained prompts for a full day landscape sequence (6 AM - 5 AM next day)
  * @param {string} initialDescription - Starting landscape description
+ * @param {Date|string} targetDate - Date to generate prompts for (for seasonal context)
  * @returns {Promise<string[]>} Array of 24 prompts
  */
-export async function generateDailyPrompts(initialDescription = "a natural landscape with mountains, turquoise lake and pine forests at dawn") {
+export async function generateDailyPrompts(
+    initialDescription = "a natural landscape with mountains, turquoise lake and pine forests at dawn",
+    targetDate = new Date()
+) {
     // Initialize OpenAI model
     const llm = new ChatOpenAI({
         temperature: 0.7,
@@ -52,8 +56,11 @@ Description:`
         '12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM'
     ];
 
-    // Get current date in readable format
-    const currentDate = new Date().toLocaleDateString('en-US', {
+    // Convert targetDate to Date object if string
+    const dateObj = typeof targetDate === 'string' ? new Date(targetDate) : targetDate;
+
+    // Get target date in readable format
+    const currentDate = dateObj.toLocaleDateString('en-US', {
         month: 'long',
         day: 'numeric',
         year: 'numeric'

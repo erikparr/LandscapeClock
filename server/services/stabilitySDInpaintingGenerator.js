@@ -153,7 +153,7 @@ export async function generateDailyLandscape(seedImagePath, prompts, outputDir, 
                                 height: height,
                                 num_inference_steps: 35,
                                 guidance_scale: 7.5,
-                                negative_prompt: "blurry, distorted, low quality, artifacts, discontinuous",
+                                negative_prompt: "blurry, low quality, artifacts, discontinuous, people, text, numbers",
                                 num_outputs: 1
                             }
                         }
@@ -212,6 +212,28 @@ export async function generateDailyLandscape(seedImagePath, prompts, outputDir, 
     console.log('\nStitching segments together...');
     const fullDayPath = await stitchImages(segmentPaths, outputDir, date, EXTENSION_WIDTH);
 
+    // Extract and save final 512x512 seed for next day's continuity
+    console.log('\nExtracting final seed for next day continuity...');
+    const finalSeedPath = path.join(outputDir, `${date}_final_seed.png`);
+    const panoramaMeta = await sharp(fullDayPath).metadata();
+
+    await sharp(fullDayPath)
+        .extract({
+            width: 512,
+            height: panoramaMeta.height,
+            left: panoramaMeta.width - 512,  // Rightmost 512px
+            top: 0
+        })
+        .toFile(finalSeedPath);
+
+    console.log(`Final seed saved: ${finalSeedPath} (512x${panoramaMeta.height})`);
+
+    // Save final description for next day's continuity
+    const finalDescription = prompts[prompts.length - 1];
+    const finalDescriptionPath = path.join(outputDir, `${date}_final_description.txt`);
+    await fs.writeFile(finalDescriptionPath, finalDescription, 'utf-8');
+    console.log(`Final description saved: ${finalDescriptionPath}`);
+
     // Clean up intermediate seed images
     console.log('Cleaning up intermediate files...');
     for (let i = 1; i <= prompts.length; i++) {
@@ -222,7 +244,12 @@ export async function generateDailyLandscape(seedImagePath, prompts, outputDir, 
     }
 
     console.log(`Full day landscape generated: ${fullDayPath}`);
-    return fullDayPath;
+
+    return {
+        fullDayPath,
+        finalSeedPath,
+        finalDescription
+    };
 }
 
 /**
