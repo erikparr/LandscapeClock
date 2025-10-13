@@ -14,6 +14,17 @@ export default defineEventHandler(async (event) => {
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
+    // Return default during build/prerender when token isn't available
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        console.log('No BLOB_READ_WRITE_TOKEN available (build time), returning defaults');
+        return {
+            currentTime: now.toISOString(),
+            todayImage: '/images/default_seed_image.png',
+            tomorrowImage: null,
+            todayPrompts: null
+        };
+    }
+
     try {
         // List all blobs from Vercel Blob storage
         const { blobs } = await list({

@@ -34,7 +34,9 @@ export default defineNuxtConfig({
   // },
   // Add this new configuration
   routeRules: {
-    '/images/**': { static: true }
+    '/images/**': { static: true },
+    '/': { ssr: true, prerender: false },  // Disable prerender for index - fetches from API at runtime
+    '/api/**': { cors: true }
   },
   // Add this to ensure static files are served correctly
   experimental: {
