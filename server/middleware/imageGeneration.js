@@ -287,11 +287,33 @@ export async function initializeImageGeneration() {
     console.log('Image generation initialization complete');
 }
 
-// Schedule daily image generation for tomorrow at midnight
-scheduleJob('0 0 * * *', async function() {
+// Schedule daily image generation for tomorrow at 5 PM (17:00)
+// This gives ~7 hours before midnight transition for generation to complete
+scheduleJob('0 17 * * *', async function() {
+    console.log('🕔 Scheduled generation triggered at 5 PM');
+
     if (!isGeneratingImage) {
+        const today = DateTime.now().toFormat('yyyy-MM-dd');
         const tomorrow = DateTime.now().plus({ days: 1 }).toFormat('yyyy-MM-dd');
+
+        console.log(`Generating tomorrow's landscape: ${tomorrow}`);
+        console.log(`Using today's final outputs for continuity: ${today}`);
+
+        // Check if today's generation has final outputs for continuity
+        const todayFinalSeed = path.join(IMAGE_BASE_PATH, `${today}-full-day`, `${today}_final_seed.png`);
+        const todayFinalDesc = path.join(IMAGE_BASE_PATH, `${today}-full-day`, `${today}_final_description.txt`);
+
+        const hasContinuity = await fs.pathExists(todayFinalSeed) && await fs.pathExists(todayFinalDesc);
+
+        if (hasContinuity) {
+            console.log('✅ Continuity data found - tomorrow will seamlessly continue from today');
+        } else {
+            console.log('⚠️  No continuity data - tomorrow will start fresh');
+        }
+
         await generateImagesForDay(tomorrow);
+    } else {
+        console.log('⚠️  Generation already in progress, skipping scheduled run');
     }
 });
 
