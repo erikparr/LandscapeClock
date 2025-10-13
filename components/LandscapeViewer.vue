@@ -35,9 +35,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import { useRuntimeConfig } from '#app'
 
-const config = useRuntimeConfig()
 const props = defineProps<{
   currentTime: Date
 }>()
@@ -105,12 +103,13 @@ async function fetchCurrentLandscape() {
   isLoading.value = true
   error.value = ''
   try {
-    const url = new URL('/api/current-landscape', config.public.baseURL)
+    // Use relative URL for production compatibility
+    let url = '/api/current-landscape'
     if (isSimulationMode.value) {
-      url.searchParams.set('simulation_time', new Date(props.currentTime).toISOString())
+      url += `?simulation_time=${new Date(props.currentTime).toISOString()}`
     }
-    
-    const response = await fetch(url.toString())
+
+    const response = await fetch(url)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -164,13 +163,14 @@ async function fetchNextDayImage() {
   try {
     const nextDay = new Date(props.currentTime)
     nextDay.setDate(nextDay.getDate() + 1)
-    
-    const url = new URL('/api/current-landscape', config.public.baseURL)
+
+    // Use relative URL for production compatibility
+    let url = '/api/current-landscape'
     if (isSimulationMode.value) {
-      url.searchParams.set('simulation_time', nextDay.toISOString())
+      url += `?simulation_time=${nextDay.toISOString()}`
     }
-    
-    const response = await fetch(url.toString())
+
+    const response = await fetch(url)
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
