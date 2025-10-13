@@ -7,7 +7,4 @@ dist
 *.log
 .env
 .env.local
-static/images/2025-*
-static/images/continuity-test
 temp-generation-*
-continuity-test
