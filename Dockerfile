@@ -16,13 +16,11 @@ COPY package*.json ./
 # Install dependencies (including devDependencies for now)
 RUN npm install
 
-# Copy application code
+# Copy application code (including static/images)
 COPY . .
 
-# Ensure static/images directory exists and copy seed images explicitly
-RUN mkdir -p /app/static/images
-COPY static/images/input.jpg /app/static/images/input.jpg
-COPY static/images/default_seed_image.png /app/static/images/default_seed_image.png
+# Verify seed images were copied
+RUN ls -la /app/static/images/ || echo "static/images directory not found"
 
 # Expose port for health checks
 EXPOSE 3001
