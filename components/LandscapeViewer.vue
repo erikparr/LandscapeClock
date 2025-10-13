@@ -26,7 +26,7 @@
     <div v-if="isSimulationMode" class="debug-info">
       <p>Current Image: {{ currentImageUrl }}</p>
       <p>Next Image: {{ nextImageUrl }}</p>
-      <p>Pan Offset: {{ panOffset.toFixed(2) }}</p>
+      <p>Pan Percentage: {{ panPercentage.toFixed(2) }}%</p>
       <p>Current Date: {{ currentDate }}</p>
       <p>Next Image Loading: {{ isLoadingNextImage ? 'Yes' : 'No' }}</p>
     </div>
@@ -118,14 +118,19 @@ async function fetchCurrentLandscape() {
     currentImage.value = data.todayImage
     lastFetchedDate.value = currentDate.value
     console.log('Fetched current image URL:', data.todayImage)
-    
+
     if (data.tomorrowImage) {
       nextImage.value = data.tomorrowImage
       console.log('Fetched next image URL:', data.tomorrowImage)
     }
 
-    // Fetch and parse descriptions
-    await fetchDescriptions(data.todayImage)
+    // Fetch and parse descriptions from Blob storage
+    if (data.todayPrompts) {
+      await fetchDescriptionsFromUrl(data.todayPrompts)
+    } else {
+      console.warn('No prompts URL available')
+      descriptions.value = []
+    }
   } catch (err) {
     console.error('Error fetching landscape data:', err)
     error.value = 'Failed to load landscape data'
@@ -134,24 +139,18 @@ async function fetchCurrentLandscape() {
   }
 }
 
-async function fetchDescriptions(imageUrl: string) {
+async function fetchDescriptionsFromUrl(promptsUrl: string) {
   try {
-    // Extract the date and file name from the image URL
-    const urlParts = imageUrl.split('/');
-    const date = urlParts[urlParts.length - 2]; // Assumes format like '/images/2024-08-27/2024-08-27_full_day_landscape.png'
-    const descriptionFileName = `${date}_generated_descriptions.txt`;
+    console.log('Fetching descriptions from:', promptsUrl);
 
-    // Construct the full URL using config.public.baseURL
-    const descriptionUrl = new URL(`/images/${date}/${descriptionFileName}`, config.public.baseURL).toString();
-    console.log('Fetching descriptions from:', descriptionUrl);
-
-    const response = await fetch(descriptionUrl);
+    const response = await fetch(promptsUrl);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const text = await response.text();
-    descriptions.value = text.split('\n\n').map(desc => desc.trim());
-    console.log('Fetched descriptions:', descriptions.value);
+    // Parse prompts file - remove numbering (e.g., "1. " prefix)
+    descriptions.value = text.split('\n\n').map(desc => desc.trim().replace(/^\d+\.\s*/, ''));
+    console.log('Fetched descriptions:', descriptions.value.length, 'descriptions');
   } catch (err) {
     console.error('Error fetching descriptions:', err);
     descriptions.value = [];
