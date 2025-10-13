@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ['nodejs_20']
+
+[phases.install]
+cmds = ['npm ci']
+
+[phases.build]
+# Skip the Nuxt build - we only need the worker
+cmds = []
+
+[start]
+cmd = 'node railway-worker.js'
