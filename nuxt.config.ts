@@ -41,9 +41,5 @@ export default defineNuxtConfig({
   // Add this to ensure static files are served correctly
   experimental: {
     payloadExtraction: false
-  },
-  // Explicitly set the public directory
-  dir: {
-    public: 'static'
   }
 })

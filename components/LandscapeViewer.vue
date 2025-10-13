@@ -50,11 +50,13 @@ const lastFetchedDate = ref('')
 const isSimulationMode = ref(false)
 const isRunning = ref(false)
 const simulationSpeed = ref(100)
+const isMounted = ref(false)
 
 const descriptions = ref<string[]>([])
 const currentDescription = computed(() => {
+  if (!isMounted.value) return 'Loading landscape...'
   const hour = new Date(props.currentTime).getHours()
-  return descriptions.value[hour] || 'No description available'
+  return descriptions.value[hour] || 'Loading landscape...'
 })
 
 const currentImageUrl = computed(() => currentImage.value)
@@ -226,6 +228,7 @@ function simulateTime() {
 
 onMounted(() => {
   console.log('Component mounted, current image:', currentImage.value)
+  isMounted.value = true
   animate()
 })
 

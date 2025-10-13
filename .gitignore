@@ -18,6 +18,10 @@ images/*
 static/images/
 images/
 
+# Allow public/images for deployment fallback images
+!public/images/
+!public/images/**
+
 # Runtime data
 pids
 *.pid

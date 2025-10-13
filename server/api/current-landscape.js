@@ -50,6 +50,7 @@ export default defineEventHandler(async (event) => {
             todayImage: todayImage?.url || '/images/default_seed_image.png',
             tomorrowImage: tomorrowImage?.url || null,
             todayPrompts: todayPrompts?.url || null,
+            todayDescription: null,
             blobInfo: {
                 todayFound: !!todayImage,
                 tomorrowFound: !!tomorrowImage,
@@ -68,12 +69,15 @@ export default defineEventHandler(async (event) => {
 
     } catch (error) {
         console.error('Error fetching landscape from Vercel Blob:', error);
+        console.error('Error details:', error.stack || error);
 
         // Fallback to default image
         return {
             currentTime: now.toISOString(),
             todayImage: '/images/default_seed_image.png',
             tomorrowImage: null,
+            todayPrompts: null,
+            todayDescription: null,
             error: error.message
         };
     }
