@@ -2,11 +2,11 @@
 nixPkgs = ['nodejs_20']
 
 [phases.install]
-cmds = ['npm ci']
+cmds = ['npm install --production=false']
 
 [phases.build]
 # Skip the Nuxt build - we only need the worker
-cmds = []
+cmds = ['echo "Skipping build for worker-only deployment"']
 
 [start]
 cmd = 'node railway-worker.js'
