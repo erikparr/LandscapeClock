@@ -4,32 +4,40 @@
 
 LandscapeClock is an innovative web application that generates continuous, seamless landscape panoramas representing a full 24-hour cycle. The system uses AI to create poetic, time-aware landscape descriptions via LangChain, then renders them as a 6656x512 pixel panoramic image using Stability AI's inpainting model. The resulting panorama is displayed in a web interface that pans through the image as real time progresses, showing the appropriate hour's landscape segment.
 
-## Architecture
+**🌐 Production Site:** https://landscapeclock.vercel.app
+**📖 Deployment Guide:** [DEPLOYMENT.md](DEPLOYMENT.md)
+**🔗 Multi-Day Continuity:** [MULTI_DAY_CONTINUITY.md](MULTI_DAY_CONTINUITY.md)
 
-### System Components
+## Production Architecture
+
+The system runs on a distributed cloud architecture:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Frontend (Nuxt.js)                       │
+│              Vercel Frontend (Production)                    │
 │  ┌────────────────────────────────────────────────────┐    │
 │  │  LandscapeViewer.vue                               │    │
-│  │  - Displays panoramic image                        │    │
+│  │  - Fetches images from Vercel Blob via API        │    │
 │  │  - Pans based on current time                      │    │
 │  │  - Shows clock and hourly description              │    │
 │  └────────────────────────────────────────────────────┘    │
-└─────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────┐
-│                  Backend API (h3/Nuxt)                       │
 │  ┌────────────────────────────────────────────────────┐    │
 │  │  /api/current-landscape                            │    │
-│  │  - Serves today's and tomorrow's panoramas         │    │
-│  │  - Returns image URLs and metadata                 │    │
+│  │  - Lists blobs from Vercel Blob storage           │    │
+│  │  - Returns today's and tomorrow's URLs             │    │
 │  └────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────┘
-                              ↓
+                              ↓ reads from
 ┌─────────────────────────────────────────────────────────────┐
-│              Generation Pipeline (Node.js)                   │
+│                  Vercel Blob Storage                         │
+│  - Stores generated panoramas (6656x512 PNG)               │
+│  - Stores continuity files (seeds + descriptions)           │
+│  - CDN delivery for fast global access                      │
+│  - 100GB/month free tier                                    │
+└─────────────────────────────────────────────────────────────┘
+                              ↑ writes to
+┌─────────────────────────────────────────────────────────────┐
+│              Railway Worker (Background Service)             │
 │                                                              │
 │  1. Prompt Generation (LangChain + OpenAI)                  │
 │     promptGenerator.js                                       │
