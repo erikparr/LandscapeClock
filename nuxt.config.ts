@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     static: true,
-    plugins: ['~/server/plugins/initializeImages.js'],
+    // Removed initializeImages plugin - image generation now handled by Railway worker
     publicAssets: [
       {
         dir: 'static',
