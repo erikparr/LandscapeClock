@@ -19,6 +19,11 @@ RUN npm install
 # Copy application code
 COPY . .
 
+# Ensure static/images directory exists and copy seed images explicitly
+RUN mkdir -p /app/static/images
+COPY static/images/input.jpg /app/static/images/input.jpg
+COPY static/images/default_seed_image.png /app/static/images/default_seed_image.png
+
 # Expose port for health checks
 EXPOSE 3001
 
