@@ -1,0 +1,484 @@
+10:13:58.701 Running build in Washington, D.C., USA (East) – iad1
+10:13:58.701 Build machine configuration: 2 cores, 8 GB
+10:13:58.752 Retrieving list of deployment files...
+10:13:58.907 Previous build caches not available
+10:13:59.352 Downloading 277 deployment files...
+10:14:05.939 Running "vercel build"
+10:14:06.336 Vercel CLI 48.2.9
+10:14:06.961 Warning: Detected "engines": { "node": ">=20.0.0" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: http://vercel.link/node-version
+10:14:06.968 Installing dependencies...
+10:14:07.688 Collecting torch (from -r /vercel/path0/requirements.txt (line 1))
+10:14:07.718   Downloading torch-2.8.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (30 kB)
+10:14:07.902 Collecting Pillow (from -r /vercel/path0/requirements.txt (line 2))
+10:14:07.906   Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+10:14:07.943 Collecting diffusers (from -r /vercel/path0/requirements.txt (line 3))
+10:14:07.948   Downloading diffusers-0.35.1-py3-none-any.whl.metadata (20 kB)
+10:14:08.004 Collecting transformers (from -r /vercel/path0/requirements.txt (line 4))
+10:14:08.008   Downloading transformers-4.57.0-py3-none-any.whl.metadata (41 kB)
+10:14:08.014      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.4/41.4 kB 12.0 MB/s eta 0:00:00
+10:14:08.070 Collecting filelock (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.073   Downloading filelock-3.20.0-py3-none-any.whl.metadata (2.1 kB)
+10:14:08.096 Collecting typing-extensions>=4.10.0 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.100   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+10:14:08.253 Collecting setuptools (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.258   Downloading setuptools-80.9.0-py3-none-any.whl.metadata (6.6 kB)
+10:14:08.284 Collecting sympy>=1.13.3 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.287   Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+10:14:08.316 Collecting networkx (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.320   Downloading networkx-3.5-py3-none-any.whl.metadata (6.3 kB)
+10:14:08.341 Collecting jinja2 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.344   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+10:14:08.409 Collecting fsspec (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.413   Downloading fsspec-2025.9.0-py3-none-any.whl.metadata (10 kB)
+10:14:08.434 Collecting nvidia-cuda-nvrtc-cu12==12.8.93 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.437   Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+10:14:08.458 Collecting nvidia-cuda-runtime-cu12==12.8.90 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.461   Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+10:14:08.481 Collecting nvidia-cuda-cupti-cu12==12.8.90 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.484   Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+10:14:08.505 Collecting nvidia-cudnn-cu12==9.10.2.21 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.512   Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+10:14:08.532 Collecting nvidia-cublas-cu12==12.8.4.1 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.536   Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+10:14:08.556 Collecting nvidia-cufft-cu12==11.3.3.83 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.559   Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+10:14:08.578 Collecting nvidia-curand-cu12==10.3.9.90 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.582   Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+10:14:08.601 Collecting nvidia-cusolver-cu12==11.7.3.90 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.604   Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+10:14:08.624 Collecting nvidia-cusparse-cu12==12.5.8.93 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.628   Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+10:14:08.643 Collecting nvidia-cusparselt-cu12==0.7.1 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.647   Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl.metadata (7.0 kB)
+10:14:08.666 Collecting nvidia-nccl-cu12==2.27.3 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.669   Downloading nvidia_nccl_cu12-2.27.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+10:14:08.691 Collecting nvidia-nvtx-cu12==12.8.90 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.699   Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+10:14:08.721 Collecting nvidia-nvjitlink-cu12==12.8.93 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.724   Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+10:14:08.740 Collecting nvidia-cufile-cu12==1.13.1.3 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.743   Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+10:14:08.763 Collecting triton==3.4.0 (from torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:08.770   Downloading triton-3.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.7 kB)
+10:14:08.931 Collecting importlib_metadata (from diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:08.935   Downloading importlib_metadata-8.7.0-py3-none-any.whl.metadata (4.8 kB)
+10:14:08.995 Collecting huggingface-hub>=0.34.0 (from diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:08.999   Downloading huggingface_hub-0.35.3-py3-none-any.whl.metadata (14 kB)
+10:14:09.221 Collecting numpy (from diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:09.228   Downloading numpy-2.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+10:14:09.243      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.1/62.1 kB 15.3 MB/s eta 0:00:00
+10:14:09.584 Collecting regex!=2019.12.17 (from diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:09.588   Downloading regex-2025.9.18-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+10:14:09.592      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.5/40.5 kB 18.5 MB/s eta 0:00:00
+10:14:09.625 Collecting requests (from diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:09.629   Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+10:14:09.744 Collecting safetensors>=0.3.1 (from diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:09.747   Downloading safetensors-0.6.2-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+10:14:10.031 Collecting packaging>=20.0 (from transformers->-r /vercel/path0/requirements.txt (line 4))
+10:14:10.034   Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+10:14:10.074 Collecting pyyaml>=5.1 (from transformers->-r /vercel/path0/requirements.txt (line 4))
+10:14:10.078   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+10:14:10.229 Collecting tokenizers<=0.23.0,>=0.22.0 (from transformers->-r /vercel/path0/requirements.txt (line 4))
+10:14:10.232   Downloading tokenizers-0.22.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+10:14:10.285 Collecting tqdm>=4.27 (from transformers->-r /vercel/path0/requirements.txt (line 4))
+10:14:10.289   Downloading tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+10:14:10.293      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.7/57.7 kB 30.0 MB/s eta 0:00:00
+10:14:10.417 Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub>=0.34.0->diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:10.420   Downloading hf_xet-1.1.10-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.7 kB)
+10:14:10.550 Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:10.554   Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+10:14:10.630 Collecting zipp>=3.20 (from importlib_metadata->diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:10.634   Downloading zipp-3.23.0-py3-none-any.whl.metadata (3.6 kB)
+10:14:10.693 Collecting MarkupSafe>=2.0 (from jinja2->torch->-r /vercel/path0/requirements.txt (line 1))
+10:14:10.696   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+10:14:10.880 Collecting charset_normalizer<4,>=2 (from requests->diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:10.885   Downloading charset_normalizer-3.4.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (36 kB)
+10:14:10.909 Collecting idna<4,>=2.5 (from requests->diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:10.913   Downloading idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+10:14:10.955 Collecting urllib3<3,>=1.21.1 (from requests->diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:10.959   Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+10:14:10.985 Collecting certifi>=2017.4.17 (from requests->diffusers->-r /vercel/path0/requirements.txt (line 3))
+10:14:10.988   Downloading certifi-2025.10.5-py3-none-any.whl.metadata (2.5 kB)
+10:14:11.050 Downloading torch-2.8.0-cp312-cp312-manylinux_2_28_x86_64.whl (887.9 MB)
+10:14:26.895    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 887.9/887.9 MB 1.0 MB/s eta 0:00:00
+10:14:26.902 Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl (594.3 MB)
+10:14:36.963    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 594.3/594.3 MB 1.3 MB/s eta 0:00:00
+10:14:36.967 Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (10.2 MB)
+10:14:37.056    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 118.4 MB/s eta 0:00:00
+10:14:37.060 Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (88.0 MB)
+10:14:37.861    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.0/88.0 MB 19.7 MB/s eta 0:00:00
+10:14:37.866 Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (954 kB)
+10:14:37.873    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 954.8/954.8 kB 205.5 MB/s eta 0:00:00
+10:14:37.877 Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (706.8 MB)
+10:14:59.068    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 706.8/706.8 MB 760.4 kB/s eta 0:00:00
+10:14:59.074 Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (193.1 MB)
+10:15:04.276    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 193.1/193.1 MB 2.2 MB/s eta 0:00:00
+10:15:04.285 Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+10:15:04.359    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 16.9 MB/s eta 0:00:00
+10:15:04.364 Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl (63.6 MB)
+10:15:06.335    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 MB 5.8 MB/s eta 0:00:00
+10:15:06.340 Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl (267.5 MB)
+10:15:08.331    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 267.5/267.5 MB 11.4 MB/s eta 0:00:00
+10:15:08.336 Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (288.2 MB)
+10:15:11.311    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 MB 5.8 MB/s eta 0:00:00
+10:15:11.318 Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (287.2 MB)
+10:15:15.125    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 287.2/287.2 MB 4.0 MB/s eta 0:00:00
+10:15:15.132 Downloading nvidia_nccl_cu12-2.27.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (322.4 MB)
+10:15:27.957    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 322.4/322.4 MB 900.5 kB/s eta 0:00:00
+10:15:27.963 Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.3 MB)
+10:15:29.582    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.3/39.3 MB 6.8 MB/s eta 0:00:00
+10:15:29.585 Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+10:15:29.681    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.0/90.0 kB 859.5 kB/s eta 0:00:00
+10:15:29.691 Downloading triton-3.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (155.6 MB)
+10:15:35.094    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 155.6/155.6 MB 2.3 MB/s eta 0:00:00
+10:15:35.099 Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+10:15:35.506    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 16.4 MB/s eta 0:00:00
+10:15:35.517 Downloading diffusers-0.35.1-py3-none-any.whl (4.1 MB)
+10:15:35.829    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.1/4.1 MB 13.2 MB/s eta 0:00:00
+10:15:35.834 Downloading transformers-4.57.0-py3-none-any.whl (12.0 MB)
+10:15:36.380    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 19.2 MB/s eta 0:00:00
+10:15:36.385 Downloading huggingface_hub-0.35.3-py3-none-any.whl (564 kB)
+10:15:36.397    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 564.3/564.3 kB 75.5 MB/s eta 0:00:00
+10:15:36.402 Downloading fsspec-2025.9.0-py3-none-any.whl (199 kB)
+10:15:36.503    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 199.3/199.3 kB 2.0 MB/s eta 0:00:00
+10:15:36.506 Downloading numpy-2.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+10:15:37.194    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.6/16.6 MB 15.6 MB/s eta 0:00:00
+10:15:37.197 Downloading packaging-25.0-py3-none-any.whl (66 kB)
+10:15:37.296    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 66.5/66.5 kB 590.5 kB/s eta 0:00:00
+10:15:37.301 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+10:15:37.412    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 7.4 MB/s eta 0:00:00
+10:15:37.417 Downloading regex-2025.9.18-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (802 kB)
+10:15:37.530    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 802.0/802.0 kB 7.2 MB/s eta 0:00:00
+10:15:37.537 Downloading safetensors-0.6.2-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (485 kB)
+10:15:37.648    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 485.8/485.8 kB 4.7 MB/s eta 0:00:00
+10:15:37.652 Downloading setuptools-80.9.0-py3-none-any.whl (1.2 MB)
+10:15:37.755    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 11.9 MB/s eta 0:00:00
+10:15:37.759 Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+10:15:38.187    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 14.8 MB/s eta 0:00:00
+10:15:38.193 Downloading tokenizers-0.22.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+10:15:38.425    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 14.2 MB/s eta 0:00:00
+10:15:38.429 Downloading tqdm-4.67.1-py3-none-any.whl (78 kB)
+10:15:38.533    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 78.5/78.5 kB 684.3 kB/s eta 0:00:00
+10:15:38.540 Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+10:15:38.648    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.6/44.6 kB 326.8 kB/s eta 0:00:00
+10:15:38.650 Downloading filelock-3.20.0-py3-none-any.whl (16 kB)
+10:15:38.657 Downloading importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+10:15:38.762 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+10:15:38.867    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 1.2 MB/s eta 0:00:00
+10:15:38.872 Downloading networkx-3.5-py3-none-any.whl (2.0 MB)
+10:15:38.991    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 17.5 MB/s eta 0:00:00
+10:15:38.995 Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+10:15:39.098    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.7/64.7 kB 546.1 kB/s eta 0:00:00
+10:15:39.102 Downloading certifi-2025.10.5-py3-none-any.whl (163 kB)
+10:15:39.207    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.3/163.3 kB 1.5 MB/s eta 0:00:00
+10:15:39.211 Downloading charset_normalizer-3.4.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (151 kB)
+10:15:39.314    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 151.8/151.8 kB 1.4 MB/s eta 0:00:00
+10:15:39.319 Downloading hf_xet-1.1.10-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+10:15:39.538    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 14.9 MB/s eta 0:00:00
+10:15:39.542 Downloading idna-3.11-py3-none-any.whl (71 kB)
+10:15:39.651    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 71.0/71.0 kB 586.8 kB/s eta 0:00:00
+10:15:39.654 Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+10:15:39.664 Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+10:15:39.768    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 5.3 MB/s eta 0:00:00
+10:15:39.773 Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+10:15:39.876    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 129.8/129.8 kB 1.2 MB/s eta 0:00:00
+10:15:39.879 Downloading zipp-3.23.0-py3-none-any.whl (10 kB)
+10:15:50.997 Installing collected packages: nvidia-cusparselt-cu12, mpmath, zipp, urllib3, typing-extensions, tqdm, sympy, setuptools, safetensors, regex, pyyaml, Pillow, packaging, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufile-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, idna, hf-xet, fsspec, filelock, charset_normalizer, certifi, triton, requests, nvidia-cusparse-cu12, nvidia-cufft-cu12, nvidia-cudnn-cu12, jinja2, importlib_metadata, nvidia-cusolver-cu12, huggingface-hub, torch, tokenizers, diffusers, transformers
+10:17:57.860 Successfully installed MarkupSafe-3.0.3 Pillow-11.3.0 certifi-2025.10.5 charset_normalizer-3.4.3 diffusers-0.35.1 filelock-3.20.0 fsspec-2025.9.0 hf-xet-1.1.10 huggingface-hub-0.35.3 idna-3.11 importlib_metadata-8.7.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.5 numpy-2.3.3 nvidia-cublas-cu12-12.8.4.1 nvidia-cuda-cupti-cu12-12.8.90 nvidia-cuda-nvrtc-cu12-12.8.93 nvidia-cuda-runtime-cu12-12.8.90 nvidia-cudnn-cu12-9.10.2.21 nvidia-cufft-cu12-11.3.3.83 nvidia-cufile-cu12-1.13.1.3 nvidia-curand-cu12-10.3.9.90 nvidia-cusolver-cu12-11.7.3.90 nvidia-cusparse-cu12-12.5.8.93 nvidia-cusparselt-cu12-0.7.1 nvidia-nccl-cu12-2.27.3 nvidia-nvjitlink-cu12-12.8.93 nvidia-nvtx-cu12-12.8.90 packaging-25.0 pyyaml-6.0.3 regex-2025.9.18 requests-2.32.5 safetensors-0.6.2 setuptools-80.9.0 sympy-1.14.0 tokenizers-0.22.1 torch-2.8.0 tqdm-4.67.1 transformers-4.57.0 triton-3.4.0 typing-extensions-4.15.0 urllib3-2.5.0 zipp-3.23.0
+10:17:57.861 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+10:17:58.493 Installing dependencies...
+10:18:01.330 npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+10:18:01.840 npm warn deprecated npmlog@5.0.1: This package is no longer supported.
+10:18:02.210 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+10:18:02.745 npm warn deprecated gauge@3.0.2: This package is no longer supported.
+10:18:02.907 npm warn deprecated are-we-there-yet@2.0.0: This package is no longer supported.
+10:18:04.121 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+10:18:04.229 npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+10:18:04.278 npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
+10:18:06.982 
+10:18:06.982 > postinstall
+10:18:06.982 > nuxt prepare
+10:18:06.982 
+10:18:08.657 [success] Types generated in .nuxt
+10:18:08.689 
+10:18:08.690 added 707 packages in 10s
+10:18:08.690 
+10:18:08.690 144 packages are looking for funding
+10:18:08.690   run `npm fund` for details
+10:18:08.760 Running "npm run build"
+10:18:08.865 
+10:18:08.866 > build
+10:18:08.866 > nuxt build
+10:18:08.866 
+10:18:09.059 [log] Nuxt 3.13.0 with Nitro 2.9.7
+10:18:10.815 [warn] Browserslist: caniuse-lite is outdated. Please run:
+10:18:10.816   npx update-browserslist-db@latest
+10:18:10.816   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+10:18:10.981 [info] Building client...
+10:18:11.298 [info] [36mvite v5.4.2 [32mbuilding for production...[36m[39m
+10:18:11.336 [info] transforming...
+10:18:12.318 [warn] [33m[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+10:18:12.319 21 |  
+10:18:12.319 22 |  /* Import a nice, readable font */
+10:18:12.319 23 |  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+10:18:12.319    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:18:12.319 24 |  
+10:18:12.319 25 |  /* Reset and base styles */[39m
+10:18:12.396 [warn] 
+10:18:12.396 /fonts/NewAmsterdam-Regular.ttf referenced in /fonts/NewAmsterdam-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+10:18:13.172 [info] [32m✓[39m 145 modules transformed.
+10:18:13.283 [info] rendering chunks...
+10:18:13.357 [info] computing gzip size...
+10:18:13.365 [info] [2m.nuxt/dist/client/[22m[32mmanifest.json                 [39m[1m[2m  1.49 kB[22m[1m[22m[2m │ gzip:  0.37 kB[22m
+10:18:13.366 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[35merror-500.CIkJDsQj.css  [39m[1m[2m  1.88 kB[22m[1m[22m[2m │ gzip:  0.72 kB[22m
+10:18:13.366 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[35mindex.CpGOE_Uh.css      [39m[1m[2m  2.79 kB[22m[1m[22m[2m │ gzip:  1.07 kB[22m
+10:18:13.366 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[35merror-404.DXySnQZL.css  [39m[1m[2m  3.56 kB[22m[1m[22m[2m │ gzip:  1.10 kB[22m
+10:18:13.366 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[36mDkTvNXOc.js             [39m[1m[2m  0.38 kB[22m[1m[22m[2m │ gzip:  0.27 kB[22m
+10:18:13.367 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[36mBK4BUxsw.js             [39m[1m[2m  2.77 kB[22m[1m[22m[2m │ gzip:  1.24 kB[22m
+10:18:13.367 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[36mwTvQHJAZ.js             [39m[1m[2m  5.31 kB[22m[1m[22m[2m │ gzip:  2.29 kB[22m
+10:18:13.367 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[36mDzRpqU6z.js             [39m[1m[2m  8.65 kB[22m[1m[22m[2m │ gzip:  3.47 kB[22m
+10:18:13.367 [info] [2m.nuxt/dist/client/[22m[2m_nuxt/[22m[36md6vml1RM.js             [39m[1m[2m155.02 kB[22m[1m[22m[2m │ gzip: 58.87 kB[22m
+10:18:13.367 [info] [32m✓ built in 2.07s[39m
+10:18:13.368 [success] Client built in 2387ms
+10:18:13.370 [info] Building server...
+10:18:13.372 [info] [36mvite v5.4.2 [32mbuilding SSR bundle for production...[36m[39m
+10:18:13.380 [info] transforming...
+10:18:13.622 [warn] [33m[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+10:18:13.622 21 |  
+10:18:13.623 22 |  /* Import a nice, readable font */
+10:18:13.623 23 |  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+10:18:13.623    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:18:13.623 24 |  
+10:18:13.623 25 |  /* Reset and base styles */[39m
+10:18:13.762 [warn] [33m[vite:css] @import must precede all other statements (besides @charset or empty @layer)
+10:18:13.762 21 |  
+10:18:13.762 22 |  /* Import a nice, readable font */
+10:18:13.762 23 |  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+10:18:13.762    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:18:13.763 24 |  
+10:18:13.763 25 |  /* Reset and base styles */[39m (x2)
+10:18:13.871 [warn] 
+10:18:13.871 /fonts/NewAmsterdam-Regular.ttf referenced in /fonts/NewAmsterdam-Regular.ttf didn't resolve at build time, it will remain unchanged to be resolved at runtime
+10:18:14.092 [info] [32m✓[39m 86 modules transformed.
+10:18:14.126 [info] rendering chunks...
+10:18:14.208 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32mindex-styles.288JfqNG.mjs                 [39m[1m[2m 0.08 kB[22m[1m[22m
+10:18:14.209 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32merror-404-styles.Bu6MjMo9.mjs             [39m[1m[2m 0.08 kB[22m[1m[22m
+10:18:14.209 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32merror-500-styles.Cv3Z928s.mjs             [39m[1m[2m 0.08 kB[22m[1m[22m
+10:18:14.209 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32mLandscapeViewer-styles.BWFgF65k.mjs       [39m[1m[2m 0.09 kB[22m[1m[22m
+10:18:14.210 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32merror-404-styles.tQ-JJ2MV.mjs             [39m[1m[2m 0.15 kB[22m[1m[22m
+10:18:14.210 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32merror-500-styles.C6Ua1iY6.mjs             [39m[1m[2m 0.15 kB[22m[1m[22m
+10:18:14.210 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[32mLandscapeViewer-styles.CYkV2d8D.mjs       [39m[1m[2m 0.17 kB[22m[1m[22m
+10:18:14.210 [info] [2m.nuxt/dist/server/[22m[32mstyles.mjs                                      [39m[1m[2m 1.11 kB[22m[1m[22m
+10:18:14.211 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36mindex-C2merokO.js                         [39m[1m[2m 0.98 kB[22m[1m[22m[2m │ map:   6.46 kB[22m
+10:18:14.211 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36mindex-styles-1.mjs-BLC1h5tB.js            [39m[1m[2m 1.29 kB[22m[1m[22m[2m │ map:   0.11 kB[22m
+10:18:14.211 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36mLandscapeViewer-styles-1.mjs-B2bzWOek.js  [39m[1m[2m 1.86 kB[22m[1m[22m[2m │ map:   0.12 kB[22m
+10:18:14.212 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36merror-500-styles-1.mjs-D0NH6WYJ.js        [39m[1m[2m 2.10 kB[22m[1m[22m[2m │ map:   0.12 kB[22m
+10:18:14.212 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36merror-404-styles-1.mjs-qQTBqiq5.js        [39m[1m[2m 3.80 kB[22m[1m[22m[2m │ map:   0.12 kB[22m
+10:18:14.212 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36merror-500-BicTHyR_.js                     [39m[1m[2m 3.88 kB[22m[1m[22m[2m │ map:   4.56 kB[22m
+10:18:14.213 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36mindex-CFtyekwJ.js                         [39m[1m[2m 7.78 kB[22m[1m[22m[2m │ map:  19.74 kB[22m
+10:18:14.213 [info] [2m.nuxt/dist/server/[22m[2m_nuxt/[22m[36merror-404-C_Vd0vrh.js                     [39m[1m[2m14.63 kB[22m[1m[22m[2m │ map:  27.50 kB[22m
+10:18:14.213 [info] [2m.nuxt/dist/server/[22m[36mserver.mjs                                      [39m[1m[2m45.52 kB[22m[1m[22m[2m │ map: 108.17 kB[22m
+10:18:14.216 [info] [32m✓ built in 843ms[39m
+10:18:14.218 [success] Server built in 848ms
+10:18:14.222 [info] [nitro] Initializing prerenderer
+10:18:14.984 [warn] "sendStream" is imported from external module "file:///vercel/path0/node_modules/h3/dist/index.mjs" but never used in "node_modules/nitropack/dist/runtime/utils.mjs", "node_modules/nitropack/dist/runtime/route-rules.mjs", "server/api/current-landscape.js", "node_modules/nuxt/dist/core/runtime/nitro/error.js", "server/middleware/imageGeneration.js", "node_modules/nitropack/dist/runtime/context.mjs", ".nuxt/dist/server/server.mjs", "node_modules/nitropack/dist/runtime/cache.mjs", "node_modules/nitropack/dist/runtime/renderer.mjs", "node_modules/nitropack/dist/runtime/error.mjs", "node_modules/nitropack/dist/runtime/static.mjs", "node_modules/nuxt/dist/core/runtime/nitro/renderer.js", ".nuxt/dist/server/_nuxt/index-CFtyekwJ.js", ".nuxt/dist/server/_nuxt/error-404-C_Vd0vrh.js", "node_modules/nitropack/dist/runtime/task.mjs", ".nuxt/dist/server/_nuxt/error-500-BicTHyR_.js" and "node_modules/nitropack/dist/runtime/app.mjs".
+10:18:15.151 [log] Starting image generation initialization...
+10:18:15.154 [log] Initializing image generation...
+10:18:15.154 [log] Checking and generating images for today (2025-10-13) and tomorrow (2025-10-14) if needed
+10:18:15.154 [log] Checking and generating images for date: 2025-10-13
+10:18:15.155 [info] [nitro] Prerendering 3 initial routes with crawler
+10:18:15.194 [log] Date changed from undefined to 2025-10-13
+10:18:15.215 [log] Full day image not found for 2025-10-13. Generating...
+10:18:15.219 [log] Using existing seed image for 2025-10-13
+10:18:15.219 [log] Starting image generation for 2025-10-13
+10:18:15.222 [error] Error fetching landscape data: fetch failed
+10:18:15.222   at node:internal/deps/undici/undici:13510:13
+10:18:15.222   at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+10:18:15.222   at async fetchCurrentLandscape (.nuxt/prerender/chunks/build/index-CFtyekwJ.mjs:108:26)
+10:18:15.222 [log] Using existing seed image for 2025-10-13: /vercel/path0/static/images/2025-10-13/seed_image.png
+10:18:15.223 [log] Starting image sequence generation for 2025-10-13 using seed image: /vercel/path0/static/images/2025-10-13/seed_image.png
+10:18:15.230 [log] [nitro]   ├─ / (57ms)
+10:18:15.231 [log] [nitro]   ├─ /200.html (7ms)
+10:18:15.231 [log] [nitro]   ├─ /404.html (6ms)
+10:18:15.231 [info] [nitro] Prerendered 3 routes in 0.978 seconds
+10:18:15.235 [nitro] Nitro now uses `isr` option to configure ISR behavior on Vercel. Backwards-compatible support for `static` and `swr` options within the Vercel Build Options API will be removed in the future versions. Set `future.nativeSWR: true` nitro config disable this warning.
+10:18:15.315 [success] [nitro] Generated public .vercel/output/static
+10:18:15.356 [success] [nitro] You can preview this build using `npx serve .vercel/output/static`
+10:20:24.678 [error] [unhandledRejection] Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+10:20:24.679 ```
+10:20:24.679 pip install accelerate
+10:20:24.679 ```
+10:20:24.679 .
+10:20:24.679 
+Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]
+Fetching 16 files:   6%|▋         | 1/16 [00:00<00:02,  6.52it/s]
+Fetching 16 files:  31%|███▏      | 5/16 [01:20<03:08, 17.18s/it]
+Fetching 16 files:  88%|████████▊ | 14/16 [01:58<00:15,  7.64s/it]
+Fetching 16 files: 100%|██████████| 16/16 [01:58<00:00,  7.38s/it]
+10:20:24.680 
+Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae.
+10:20:24.680 Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.680 
+Loading pipeline components...:  14%|█▍        | 1/7 [00:01<00:07,  1.33s/it]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet.
+10:20:24.680 Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.680 
+Loading pipeline components...:  29%|██▊       | 2/7 [00:02<00:05,  1.06s/it]`torch_dtype` is deprecated! Use `dtype` instead!
+10:20:24.680 
+Loading pipeline components...:  43%|████▎     | 3/7 [00:02<00:02,  1.35it/s]
+10:20:24.680 Traceback (most recent call last):
+10:20:24.680   File "/vercel/path0/services/image_extender.py", line 118, in <module>
+10:20:24.680     extender = ImageExtender()
+10:20:24.680                ^^^^^^^^^^^^^^^
+10:20:24.680   File "/vercel/path0/services/image_extender.py", line 33, in __init__
+10:20:24.681     self.pipe = StableDiffusionInpaintPipeline.from_pretrained(
+10:20:24.681                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.681   File "/python312/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+10:20:24.681     return fn(*args, **kwargs)
+10:20:24.681            ^^^^^^^^^^^^^^^^^^^
+10:20:24.681   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1025, in from_pretrained
+10:20:24.681     loaded_sub_model = load_sub_model(
+10:20:24.681                        ^^^^^^^^^^^^^^^
+10:20:24.681   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 849, in load_sub_model
+10:20:24.681     loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+10:20:24.681                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.681   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+10:20:24.681     return func(*args, **kwargs)
+10:20:24.681            ^^^^^^^^^^^^^^^^^^^^^
+10:20:24.682   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4974, in from_pretrained
+10:20:24.682     model = cls(config, *model_args, **model_kwargs)
+10:20:24.682             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.682 TypeError: StableDiffusionSafetyChecker.__init__() got an unexpected keyword argument 'offload_state_dict'
+10:20:24.682 
+10:20:24.682   ```
+10:20:24.682   pip install accelerate
+10:20:24.682   ```
+10:20:24.682   .
+10:20:24.682   Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]
+Fetching 16 files:   6%|▋         | 1/16 [00:00<00:02,  6.52it/s]
+Fetching 16 files:  31%|███▏      | 5/16 [01:20<03:08, 17.18s/it]
+Fetching 16 files:  88%|████████▊ | 14/16 [01:58<00:15,  7.64s/it]
+Fetching 16 files: 100%|██████████| 16/16 [01:58<00:00,  7.38s/it]
+10:20:24.682   Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae.
+10:20:24.682   Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.685   Loading pipeline components...:  14%|█▍        | 1/7 [00:01<00:07,  1.33s/it]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet.
+10:20:24.685   Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.685   Loading pipeline components...:  29%|██▊       | 2/7 [00:02<00:05,  1.06s/it]`torch_dtype` is deprecated! Use `dtype` instead!
+10:20:24.685   Loading pipeline components...:  43%|████▎     | 3/7 [00:02<00:02,  1.35it/s]
+10:20:24.685   Traceback (most recent call last):
+10:20:24.685   File "services/image_extender.py", line 118, in <module>
+10:20:24.685   extender = ImageExtender()
+10:20:24.685   ^^^^^^^^^^^^^^^
+10:20:24.685   File "services/image_extender.py", line 33, in __init__
+10:20:24.686   self.pipe = StableDiffusionInpaintPipeline.from_pretrained(
+10:20:24.686   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.686   File "/python312/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+10:20:24.686   return fn(*args, **kwargs)
+10:20:24.686   ^^^^^^^^^^^^^^^^^^^
+10:20:24.686   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1025, in from_pretrained
+10:20:24.686   loaded_sub_model = load_sub_model(
+10:20:24.686   ^^^^^^^^^^^^^^^
+10:20:24.686   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 849, in load_sub_model
+10:20:24.687   loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+10:20:24.687   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.687   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+10:20:24.687   return func(*args, **kwargs)
+10:20:24.687   ^^^^^^^^^^^^^^^^^^^^^
+10:20:24.687   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4974, in from_pretrained
+10:20:24.687   model = cls(config, *model_args, **model_kwargs)
+10:20:24.687   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.687   TypeError: StableDiffusionSafetyChecker.__init__() got an unexpected keyword argument 'offload_state_dict'
+10:20:24.687   
+10:20:24.687   at PythonShell.parseError (node_modules/python-shell/index.js:311:21)
+10:20:24.687   at terminateIfNeeded (node_modules/python-shell/index.js:193:32)
+10:20:24.687   at ChildProcess.<anonymous> (node_modules/python-shell/index.js:185:13)
+10:20:24.687   at ChildProcess.emit (node:events:519:28)
+10:20:24.687   at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+10:20:24.688 [error] [nitro] [unhandledRejection] Cannot initialize model with low cpu memory usage because `accelerate` was not found in the environment. Defaulting to `low_cpu_mem_usage=False`. It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: 
+10:20:24.688 ```
+10:20:24.688 pip install accelerate
+10:20:24.688 ```
+10:20:24.688 .
+10:20:24.688 
+Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]
+Fetching 16 files:   6%|▋         | 1/16 [00:00<00:02,  6.52it/s]
+Fetching 16 files:  31%|███▏      | 5/16 [01:20<03:08, 17.18s/it]
+Fetching 16 files:  88%|████████▊ | 14/16 [01:58<00:15,  7.64s/it]
+Fetching 16 files: 100%|██████████| 16/16 [01:58<00:00,  7.38s/it]
+10:20:24.688 
+Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae.
+10:20:24.688 Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.688 
+Loading pipeline components...:  14%|█▍        | 1/7 [00:01<00:07,  1.33s/it]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet.
+10:20:24.688 Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.688 
+Loading pipeline components...:  29%|██▊       | 2/7 [00:02<00:05,  1.06s/it]`torch_dtype` is deprecated! Use `dtype` instead!
+10:20:24.688 
+Loading pipeline components...:  43%|████▎     | 3/7 [00:02<00:02,  1.35it/s]
+10:20:24.688 Traceback (most recent call last):
+10:20:24.688   File "/vercel/path0/services/image_extender.py", line 118, in <module>
+10:20:24.688     extender = ImageExtender()
+10:20:24.688                ^^^^^^^^^^^^^^^
+10:20:24.688   File "/vercel/path0/services/image_extender.py", line 33, in __init__
+10:20:24.688     self.pipe = StableDiffusionInpaintPipeline.from_pretrained(
+10:20:24.688                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.688   File "/python312/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+10:20:24.688     return fn(*args, **kwargs)
+10:20:24.688            ^^^^^^^^^^^^^^^^^^^
+10:20:24.688   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1025, in from_pretrained
+10:20:24.688     loaded_sub_model = load_sub_model(
+10:20:24.689                        ^^^^^^^^^^^^^^^
+10:20:24.689   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 849, in load_sub_model
+10:20:24.689     loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+10:20:24.689                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.689   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+10:20:24.689     return func(*args, **kwargs)
+10:20:24.689            ^^^^^^^^^^^^^^^^^^^^^
+10:20:24.689   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4974, in from_pretrained
+10:20:24.689     model = cls(config, *model_args, **model_kwargs)
+10:20:24.689             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.689 TypeError: StableDiffusionSafetyChecker.__init__() got an unexpected keyword argument 'offload_state_dict'
+10:20:24.689 
+10:20:24.689   ```
+10:20:24.689   pip install accelerate
+10:20:24.689   ```
+10:20:24.692   .
+10:20:24.692   Fetching 16 files:   0%|          | 0/16 [00:00<?, ?it/s]
+Fetching 16 files:   6%|▋         | 1/16 [00:00<00:02,  6.52it/s]
+Fetching 16 files:  31%|███▏      | 5/16 [01:20<03:08, 17.18s/it]
+Fetching 16 files:  88%|████████▊ | 14/16 [01:58<00:15,  7.64s/it]
+Fetching 16 files: 100%|██████████| 16/16 [01:58<00:00,  7.38s/it]
+10:20:24.692   Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/vae.
+10:20:24.693   Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.693   Loading pipeline components...:  14%|█▍        | 1/7 [00:01<00:07,  1.33s/it]An error occurred while trying to fetch /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet: Error no file named diffusion_pytorch_model.safetensors found in directory /vercel/.cache/huggingface/hub/models--runwayml--stable-diffusion-inpainting/snapshots/8a4288a76071f7280aedbdb3253bdb9e9d5d84bb/unet.
+10:20:24.693   Defaulting to unsafe serialization. Pass `allow_pickle=False` to raise an error instead.
+10:20:24.693   Loading pipeline components...:  29%|██▊       | 2/7 [00:02<00:05,  1.06s/it]`torch_dtype` is deprecated! Use `dtype` instead!
+10:20:24.693   Loading pipeline components...:  43%|████▎     | 3/7 [00:02<00:02,  1.35it/s]
+10:20:24.693   Traceback (most recent call last):
+10:20:24.693   File "services/image_extender.py", line 118, in <module>
+10:20:24.693   extender = ImageExtender()
+10:20:24.693   ^^^^^^^^^^^^^^^
+10:20:24.693   File "services/image_extender.py", line 33, in __init__
+10:20:24.693   self.pipe = StableDiffusionInpaintPipeline.from_pretrained(
+10:20:24.693   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.693   File "/python312/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+10:20:24.693   return fn(*args, **kwargs)
+10:20:24.693   ^^^^^^^^^^^^^^^^^^^
+10:20:24.693   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1025, in from_pretrained
+10:20:24.693   loaded_sub_model = load_sub_model(
+10:20:24.693   ^^^^^^^^^^^^^^^
+10:20:24.693   File "/python312/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 849, in load_sub_model
+10:20:24.693   loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+10:20:24.693   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.693   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+10:20:24.693   return func(*args, **kwargs)
+10:20:24.694   ^^^^^^^^^^^^^^^^^^^^^
+10:20:24.694   File "/python312/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4974, in from_pretrained
+10:20:24.694   model = cls(config, *model_args, **model_kwargs)
+10:20:24.694   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+10:20:24.694   TypeError: StableDiffusionSafetyChecker.__init__() got an unexpected keyword argument 'offload_state_dict'
+10:20:24.694   
+10:20:24.694   at PythonShell.parseError (node_modules/python-shell/index.js:311:21)
+10:20:24.694   at terminateIfNeeded (node_modules/python-shell/index.js:193:32)
+10:20:24.694   at ChildProcess.<anonymous> (node_modules/python-shell/index.js:185:13)
+10:20:24.694   at ChildProcess.emit (node:events:519:28)
+10:20:24.694   at ChildProcess._handle.onexit (node:internal/child_process:293:12)
