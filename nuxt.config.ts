@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
-    static: true,
+    preset: 'vercel',
     // Removed initializeImages plugin - image generation now handled by Railway worker
     publicAssets: [
       {
