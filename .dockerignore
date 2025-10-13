@@ -7,8 +7,7 @@ dist
 *.log
 .env
 .env.local
-static/images/*
-!static/images/input.jpg
-!static/images/default_seed_image.png
+static/images/2025-*
+static/images/continuity-test
 temp-generation-*
 continuity-test
