@@ -1,0 +1,14 @@
+node_modules
+.nuxt
+.output
+dist
+.git
+.DS_Store
+*.log
+.env
+.env.local
+static/images/*
+!static/images/input.jpg
+!static/images/default_seed_image.png
+temp-generation-*
+continuity-test
