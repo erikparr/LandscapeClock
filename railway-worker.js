@@ -47,24 +47,44 @@ async function loadPreviousDayOutputs(targetDate) {
     previousDay.setDate(previousDay.getDate() - 1);
     const previousDate = previousDay.toISOString().split('T')[0];
 
-    const blobBaseUrl = process.env.VERCEL_BLOB_BASE_URL || 'https://your-blob-store.vercel-storage.com';
-    const prevSeedUrl = `${blobBaseUrl}/${previousDate}_final_seed.png`;
-    const prevDescUrl = `${blobBaseUrl}/${previousDate}_final_description.txt`;
-
     console.log('Checking for previous day outputs...');
     console.log(`  Previous date: ${previousDate}`);
 
     try {
-        // Try to download previous day's final description
-        const descResponse = await fetch(prevDescUrl);
-        if (descResponse.ok) {
+        // Use Vercel Blob list() API to find files by pathname
+        const { list } = await import('@vercel/blob');
+        const { blobs } = await list({
+            token: process.env.BLOB_READ_WRITE_TOKEN
+        });
+
+        console.log(`  Found ${blobs.length} total blobs in storage`);
+
+        // Find previous day's continuity files
+        const prevSeedBlob = blobs.find(blob =>
+            blob.pathname.includes(`${previousDate}_final_seed`)
+        );
+        const prevDescBlob = blobs.find(blob =>
+            blob.pathname.includes(`${previousDate}_final_description`)
+        );
+
+        console.log(`  Previous seed blob: ${prevSeedBlob ? 'FOUND' : 'NOT FOUND'}`);
+        console.log(`  Previous description blob: ${prevDescBlob ? 'FOUND' : 'NOT FOUND'}`);
+
+        if (prevSeedBlob && prevDescBlob) {
+            // Download previous day's final description
+            const descResponse = await fetch(prevDescBlob.url);
+            if (!descResponse.ok) {
+                throw new Error(`Failed to fetch description: ${descResponse.statusText}`);
+            }
             const previousDescription = await descResponse.text();
 
             // Download previous day's final seed to temp location
             const tempSeedPath = path.join(__dirname, 'temp_seed.png');
-            await downloadBlob(prevSeedUrl, tempSeedPath);
+            await downloadBlob(prevSeedBlob.url, tempSeedPath);
 
             console.log('✅ CONTINUITY MODE: Previous day outputs found');
+            console.log(`   Seed URL: ${prevSeedBlob.url}`);
+            console.log(`   Description URL: ${prevDescBlob.url}`);
             console.log(`   Final description: "${previousDescription.substring(0, 80)}..."`);
 
             return {
@@ -74,7 +94,7 @@ async function loadPreviousDayOutputs(targetDate) {
             };
         }
     } catch (error) {
-        console.log('⚠️  No previous day outputs found in blob storage');
+        console.log('⚠️  Error checking previous day outputs:', error.message);
     }
 
     console.log('🆕 FRESH START: Using default seed and description');

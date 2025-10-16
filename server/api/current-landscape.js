@@ -45,6 +45,14 @@ export default defineEventHandler(async (event) => {
             blob.pathname.includes(`${today}_prompts`)
         );
 
+        // Check for continuity files
+        const todaySeed = blobs.find(blob =>
+            blob.pathname.includes(`${today}_final_seed`)
+        );
+        const todayDesc = blobs.find(blob =>
+            blob.pathname.includes(`${today}_final_description`)
+        );
+
         const response = {
             currentTime: now.toISOString(),
             todayImage: todayImage?.url || '/images/default_seed_image.png',
@@ -54,15 +62,28 @@ export default defineEventHandler(async (event) => {
             blobInfo: {
                 todayFound: !!todayImage,
                 tomorrowFound: !!tomorrowImage,
-                promptsFound: !!todayPrompts
+                promptsFound: !!todayPrompts,
+                todaySeedFound: !!todaySeed,
+                todayDescFound: !!todayDesc
             }
         };
+
+        // If debug mode, include all blobs list
+        if (query.debug === 'true') {
+            response.allBlobs = blobs.map(b => ({
+                pathname: b.pathname,
+                uploadedAt: b.uploadedAt,
+                size: b.size
+            }));
+        }
 
         console.log('Landscape API response:', {
             today,
             tomorrow: tomorrowStr,
             todayImageFound: !!todayImage,
-            tomorrowImageFound: !!tomorrowImage
+            tomorrowImageFound: !!tomorrowImage,
+            todaySeedFound: !!todaySeed,
+            todayDescFound: !!todayDesc
         });
 
         return response;

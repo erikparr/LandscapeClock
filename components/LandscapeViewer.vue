@@ -56,7 +56,14 @@ const descriptions = ref<string[]>([])
 const currentDescription = computed(() => {
   if (!isMounted.value) return 'Loading landscape...'
   const hour = new Date(props.currentTime).getHours()
-  return descriptions.value[hour] || 'Loading landscape...'
+
+  // Adjust hour index to match panorama start (6 AM = index 0)
+  let hourIndex = hour - 6
+  if (hourIndex < 0) {
+    hourIndex += 24
+  }
+
+  return descriptions.value[hourIndex] || 'Loading landscape...'
 })
 
 const currentImageUrl = computed(() => currentImage.value)
@@ -71,21 +78,33 @@ const currentDate = computed(() => new Date(props.currentTime).toISOString().spl
 
 function updatePanOffset() {
   const currentTime = new Date(props.currentTime)
-  const totalSeconds = currentTime.getHours() * 3600 + currentTime.getMinutes() * 60 + currentTime.getSeconds()
+  const currentHours = currentTime.getHours()
+  const currentMinutes = currentTime.getMinutes()
+  const currentSeconds = currentTime.getSeconds()
+
+  // Panorama starts at 6 AM, so adjust the hour offset
+  // If before 6 AM (0-5), we're showing the end of yesterday's panorama
+  // If at or after 6 AM (6-23), we're showing today's panorama
+  let adjustedHours = currentHours - 6
+  if (adjustedHours < 0) {
+    adjustedHours += 24  // Wrap around (e.g., 3 AM = hour -3 → hour 21)
+  }
+
+  const totalSeconds = adjustedHours * 3600 + currentMinutes * 60 + currentSeconds
   const dayProgress = totalSeconds / 86400 // 86400 seconds in a day
-  
+
   panPercentage.value = dayProgress * 100
 
-  // Check if we need to switch to the next day's image
-  if (dayProgress === 0 && nextImage.value) {
-    console.log('Day changed. Switching to next image.')
+  // Check if we need to switch to the next day's image at 6 AM
+  if (currentHours === 6 && currentMinutes === 0 && currentSeconds === 0 && nextImage.value) {
+    console.log('Day changed at 6 AM. Switching to next image.')
     currentImage.value = nextImage.value
     nextImage.value = ''
     fetchNextDayImage() // Fetch the next day's image
   }
 
   // Start loading next day's image at 17:00
-  if (currentTime.getHours() === 17 && currentTime.getMinutes() === 0 && currentTime.getSeconds() === 0) {
+  if (currentHours === 17 && currentMinutes === 0 && currentSeconds === 0) {
     fetchNextDayImage()
   }
 }
