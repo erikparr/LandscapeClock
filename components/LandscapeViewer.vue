@@ -1,14 +1,27 @@
 <template>
   <div class="landscape-viewer" @keydown.p="toggleSimulationMode" tabindex="0" ref="viewerRef">
+    <!-- Loading Overlay -->
+    <transition name="fade">
+      <div v-if="isImageLoading" class="loading-overlay" :style="loadingBackgroundStyle">
+        <div class="loading-content">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Loading today's landscape...</p>
+          <p class="loading-subtext">{{ currentDate }}</p>
+        </div>
+      </div>
+    </transition>
+
     <div class="image-container">
-      <div 
+      <div
         class="image-wrapper"
         :style="{ transform: `translateX(${-panPercentage}%)` }"
       >
-        <img 
-          :src="currentImageUrl" 
-          alt="Current Landscape" 
+        <img
+          :src="currentImageUrl"
+          alt="Current Landscape"
           @error="handleImageError"
+          @load="handleImageLoad"
+          ref="imageElement"
         />
       </div>
     </div>
@@ -16,7 +29,7 @@
       {{ formattedTimeOnly }}
     </div>
     <div class="description-container">
-      <p>{{ currentDescription }}</p>
+      <p class="typewriter-text">{{ displayedDescription }}<span v-if="isTyping" class="cursor">|</span></p>
     </div>
     <div v-if="isSimulationMode" class="simulation-controls">
       <button @click="toggleSimulation">{{ isRunning ? 'Pause' : 'Start' }} Simulation</button>
@@ -44,6 +57,8 @@ const currentImage = ref('/images/default_seed_image.png')
 const nextImage = ref('')
 const isLoading = ref(false)
 const isLoadingNextImage = ref(false)
+const isImageLoading = ref(true)
+const imageElement = ref<HTMLImageElement | null>(null)
 const error = ref('')
 const panPercentage = ref(0)
 const lastFetchedDate = ref('')
@@ -51,6 +66,13 @@ const isSimulationMode = ref(false)
 const isRunning = ref(false)
 const simulationSpeed = ref(100)
 const isMounted = ref(false)
+
+// Typewriter effect state
+const displayedDescription = ref('')
+const fullDescription = ref('')
+const isTyping = ref(false)
+const typewriterInterval = ref<NodeJS.Timeout | null>(null)
+const TYPEWRITER_SPEED = 30 // milliseconds per character
 
 const descriptions = ref<string[]>([])
 const currentDescription = computed(() => {
@@ -75,6 +97,56 @@ const formattedTimeOnly = computed(() => {
 })
 
 const currentDate = computed(() => new Date(props.currentTime).toISOString().split('T')[0])
+
+// Time-aware loading screen background
+const loadingBackgroundStyle = computed(() => {
+  const hour = new Date(props.currentTime).getHours()
+
+  if (hour >= 6 && hour < 12) {
+    return { background: 'linear-gradient(135deg, #87CEEB 0%, #FFE5B4 100%)' } // Morning
+  } else if (hour >= 12 && hour < 18) {
+    return { background: 'linear-gradient(135deg, #87CEEB 0%, #90EE90 100%)' } // Afternoon
+  } else if (hour >= 18 && hour < 22) {
+    return { background: 'linear-gradient(135deg, #FF6B6B 0%, #4A90E2 100%)' } // Evening
+  } else {
+    return { background: 'linear-gradient(135deg, #0A0E27 0%, #1A237E 100%)' } // Night
+  }
+})
+
+// Typewriter effect watcher
+watch(() => currentDescription.value, (newDesc) => {
+  if (newDesc === fullDescription.value) return
+
+  // Clear existing typewriter
+  if (typewriterInterval.value) {
+    clearInterval(typewriterInterval.value)
+  }
+
+  fullDescription.value = newDesc
+  displayedDescription.value = ''
+  isTyping.value = true
+
+  // Start typewriter effect
+  let charIndex = 0
+  const chars = newDesc.split('')
+
+  typewriterInterval.value = setInterval(() => {
+    if (charIndex < chars.length) {
+      displayedDescription.value += chars[charIndex]
+      charIndex++
+    } else {
+      if (typewriterInterval.value) {
+        clearInterval(typewriterInterval.value)
+        typewriterInterval.value = null
+      }
+      isTyping.value = false
+    }
+  }, TYPEWRITER_SPEED)
+})
+
+function handleImageLoad() {
+  isImageLoading.value = false
+}
 
 function updatePanOffset() {
   const currentTime = new Date(props.currentTime)
@@ -122,6 +194,7 @@ async function fetchCurrentLandscape() {
   }
 
   isLoading.value = true
+  isImageLoading.value = true
   error.value = ''
   try {
     // Use relative URL for production compatibility
@@ -254,6 +327,9 @@ onMounted(() => {
 onUnmounted(() => {
   if (animationFrameId !== null) {
     cancelAnimationFrame(animationFrameId)
+  }
+  if (typewriterInterval.value) {
+    clearInterval(typewriterInterval.value)
   }
 })
 
@@ -404,5 +480,82 @@ function animate() {
 .debug-info {
   bottom: 50px;
   font-size: 12px;
+}
+
+/* Loading Overlay Styles */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  transition: background 1s ease;
+}
+
+.loading-content {
+  text-align: center;
+  color: white;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+.loading-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loading-subtext {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Fade transition for loading overlay */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+/* Typewriter effect styles */
+.typewriter-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
+
+.cursor {
+  animation: blink 0.7s infinite;
+  margin-left: 2px;
+  font-weight: 300;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 </style>
