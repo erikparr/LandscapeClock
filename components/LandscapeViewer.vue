@@ -14,7 +14,7 @@
     <div class="image-container">
       <div
         class="image-wrapper"
-        :style="{ transform: `translateX(${-panPercentage}%)` }"
+        :style="{ transform: `translateX(-${panOffset}px)` }"
       >
         <img
           :src="currentImageUrl"
@@ -39,7 +39,7 @@
     <div v-if="isSimulationMode" class="debug-info">
       <p>Current Image: {{ currentImageUrl }}</p>
       <p>Next Image: {{ nextImageUrl }}</p>
-      <p>Pan Percentage: {{ panPercentage.toFixed(2) }}%</p>
+      <p>Pan Offset: {{ panOffset.toFixed(0) }}px</p>
       <p>Current Date: {{ currentDate }}</p>
       <p>Next Image Loading: {{ isLoadingNextImage ? 'Yes' : 'No' }}</p>
     </div>
@@ -60,7 +60,7 @@ const isLoadingNextImage = ref(false)
 const isImageLoading = ref(true)
 const imageElement = ref<HTMLImageElement | null>(null)
 const error = ref('')
-const panPercentage = ref(0)
+const panOffset = ref(0) // in pixels
 const lastFetchedDate = ref('')
 const isSimulationMode = ref(false)
 const isRunning = ref(false)
@@ -165,7 +165,14 @@ function updatePanOffset() {
   const totalSeconds = adjustedHours * 3600 + currentMinutes * 60 + currentSeconds
   const dayProgress = totalSeconds / 86400 // 86400 seconds in a day
 
-  panPercentage.value = dayProgress * 100
+  // Calculate pixel-based pan offset
+  const imageWidth = 6656 // Panorama width in pixels
+  const viewportWidth = window.innerWidth
+  const targetPosition = dayProgress * imageWidth
+  const idealOffset = targetPosition - (viewportWidth / 2)
+
+  // Clamp offset to valid range [0, imageWidth - viewportWidth]
+  panOffset.value = Math.max(0, Math.min(idealOffset, imageWidth - viewportWidth))
 
   // Check if we need to switch to the next day's image at 6 AM
   if (currentHours === 6 && currentMinutes === 0 && currentSeconds === 0 && nextImage.value) {
@@ -412,11 +419,11 @@ function animate() {
 }
 
 .image-wrapper {
-  width: 100%;
   height: 80vh; /* Adjust this value to control image height */
   display: flex;
   align-items: center; /* This centers the image vertically within the wrapper */
   transition: transform 0.1s linear;
+  /* No width constraint - let it size to image content */
 }
 
 .image-wrapper img {
