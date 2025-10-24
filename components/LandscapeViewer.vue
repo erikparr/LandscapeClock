@@ -4,9 +4,7 @@
     <transition name="fade">
       <div v-if="isImageLoading" class="loading-overlay" :style="loadingBackgroundStyle">
         <div class="loading-content">
-          <div class="loading-spinner"></div>
-          <p class="loading-text">Loading today's landscape...</p>
-          <p class="loading-subtext">{{ currentDate }}</p>
+          <p class="loading-text">{{ loadingText }}<span v-if="isLoadingTyping" class="cursor">|</span></p>
         </div>
       </div>
     </transition>
@@ -73,6 +71,11 @@ const fullDescription = ref('')
 const isTyping = ref(false)
 const typewriterInterval = ref<NodeJS.Timeout | null>(null)
 const TYPEWRITER_SPEED = 30 // milliseconds per character
+
+// Loading screen typewriter state
+const loadingText = ref('')
+const isLoadingTyping = ref(false)
+const loadingTypewriterInterval = ref<NodeJS.Timeout | null>(null)
 
 const descriptions = ref<string[]>([])
 const currentDescription = computed(() => {
@@ -144,8 +147,47 @@ watch(() => currentDescription.value, (newDesc) => {
   }, TYPEWRITER_SPEED)
 })
 
+// Loading typewriter watcher
+watch(() => isImageLoading.value, (newVal) => {
+  if (newVal) {
+    startLoadingTypewriter()
+  }
+})
+
+function startLoadingTypewriter() {
+  // Clear existing typewriter
+  if (loadingTypewriterInterval.value) {
+    clearInterval(loadingTypewriterInterval.value)
+  }
+
+  const fullText = 'Loading'
+  loadingText.value = ''
+  isLoadingTyping.value = true
+
+  let charIndex = 0
+  const chars = fullText.split('')
+
+  loadingTypewriterInterval.value = setInterval(() => {
+    if (charIndex < chars.length) {
+      loadingText.value += chars[charIndex]
+      charIndex++
+    } else {
+      if (loadingTypewriterInterval.value) {
+        clearInterval(loadingTypewriterInterval.value)
+        loadingTypewriterInterval.value = null
+      }
+      isLoadingTyping.value = false
+    }
+  }, TYPEWRITER_SPEED)
+}
+
 function handleImageLoad() {
   isImageLoading.value = false
+  // Clear loading typewriter when image loads
+  if (loadingTypewriterInterval.value) {
+    clearInterval(loadingTypewriterInterval.value)
+    loadingTypewriterInterval.value = null
+  }
 }
 
 function updatePanOffset() {
@@ -338,6 +380,9 @@ onUnmounted(() => {
   if (typewriterInterval.value) {
     clearInterval(typewriterInterval.value)
   }
+  if (loadingTypewriterInterval.value) {
+    clearInterval(loadingTypewriterInterval.value)
+  }
 })
 
 const viewerRef = ref<HTMLElement | null>(null)
@@ -508,33 +553,12 @@ function animate() {
   color: white;
 }
 
-.loading-spinner {
-  width: 60px;
-  height: 60px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 20px;
-}
-
 .loading-text {
   font-family: 'Inter', sans-serif;
   font-size: 1.5rem;
-  font-weight: 500;
-  margin: 0 0 10px 0;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.loading-subtext {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  opacity: 0.8;
+  font-weight: 400;
   margin: 0;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Fade transition for loading overlay */
