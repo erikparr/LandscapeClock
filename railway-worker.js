@@ -26,6 +26,7 @@ const defaultDescription = "a natural landscape with mountains, turquoise lake a
 console.log('🚂 Railway Worker Starting...');
 console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 console.log(`Timezone: ${process.env.TZ || 'UTC'}`);
+console.log(`Replicate credits: Added ✅`);
 
 /**
  * Download blob to local temp file
